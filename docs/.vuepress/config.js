@@ -42,6 +42,18 @@ module.exports = {
           ]
         }
       ],
+      "/nginx/": [
+        {
+          title: "Nginx学习总结",
+          collapsable: true,
+          children: [
+            "nginx反向代理",
+            "nginx命令",
+            "nginx常用配置",
+            "nginx负载均衡"
+          ]
+        }
+      ],
       "/Interview/": [
         {
           title: "面试题汇总",
@@ -66,6 +78,10 @@ module.exports = {
           {
             text: "React学习汇总",
             link: "/react/"
+          },
+          {
+            text: "Nginx学习汇总",
+            link: "/nginx/"
           },
           {
             text: "使用 GitHub Pages 和 VuePress 搭建网站",
