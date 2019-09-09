@@ -4,6 +4,7 @@ coverage
 /dist
 reports
 yarn.lock
+package-lock.json
 output.js
 
 /tests/e2e/reports/

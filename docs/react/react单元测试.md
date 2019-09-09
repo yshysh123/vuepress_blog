@@ -299,7 +299,7 @@ describe("page/A", () => {
 
 如下图所示，讲页面组件拆分成最小单元，保证每个小的组件都是可插拔的。
 
-![单元测试分享-目录结构](./image/单元测试分享-目录结构.png)
+![单元测试分享-目录结构](./image/mulu.png)
 
 ## E2E 单元测试
 
@@ -482,7 +482,7 @@ describe("goto page", () => {
 ```
 
 统计结果如下：
-[单元测试覆盖率统计](./image/单元测试覆盖率统计.png)
+[单元测试覆盖率统计](./image/fugailv.png)
 
 ## 集成测试
 
@@ -502,8 +502,8 @@ describe("goto page", () => {
 [coveralls](https://coveralls.io)
 
 1. codecov
-   ![vue集成测试](./image/vue集成测试.png)
+   ![vue集成测试](./image/vue.png)
 2. coveralls
-   ![mobx集成测试](./image/mobx集成测试.png)
+   ![mobx集成测试](./image/mobx.png)
 
 <Valine></Valine>
