@@ -1,76 +1,18 @@
 module.exports = {
-    theme: "reco",
     title: "yush的博客",
-    description: "网站描述",
-    // 注入到当前页面的 HTML <head> 中的标签
+    base: '/',
+    description: "don't fear the unknown",
     head: [
-        ["link", { rel: "icon", href: "/favicon.ico" }], // 增加一个自定义的 favicon(网页标签的图标)
-        [
-            "meta",
-            {
-                name: "viewport",
-                content: "width=device-width,initial-scale=1,user-scalable=no"
-            }
-        ]
+        ['link', { rel: 'icon', href: '/favicon.ico' }],
+        ["link", { rel: "manifest", href: "/manifest.json" }],
+        // 更多配置可以参考 https://github.com/vuejs/vuepress/blob/master/packages/docs/docs/.vuepress/config.js
+        ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
     ],
-    base: "/", // 这是部署到github相关的配置 下面会讲
-    markdown: {
-        lineNumbers: true // 代码块显示行号
-    },
+    theme: 'reco',
     themeConfig: {
-        author: "yush",
-        lastUpdated: "Last Updated",
-        serviceWorker: {
-            updatePopup: true // Boolean | Object, 默认值是 undefined.
-            // 如果设置为 true, 默认的文本配置将是:
-            // updatePopup: {
-            //    message: "New content is available.",
-            //    buttonText: "Refresh"
-            // }
-        },
-        sidebar: {
-            "/react/": [
-                {
-                    title: "React学习总结",
-                    collapsable: true,
-                    children: [
-                        "classnames",
-                        "propTypes",
-                        "react16-hooks",
-                        "react生命周期",
-                        "react_comp"
-                    ]
-                }
-            ],
-            "/nginx/": [
-                {
-                    title: "Nginx学习总结",
-                    collapsable: true,
-                    children: [
-                        "nginx反向代理",
-                        "nginx命令",
-                        "nginx常用配置",
-                        "nginx负载均衡"
-                    ]
-                }
-            ],
-            "/Interview/": [
-                {
-                    title: "面试题汇总",
-                    collapsable: true,
-                    children: [
-                        "algorithm",
-                        "comparison",
-                        "DesignPatterns",
-                        "tips",
-                        "继承"
-                    ]
-                }
-            ]
-        },
+        type: 'blog',
         nav: [
             { text: "Home", link: "/", icon: "reco-home" },
-            { text: "Tags", link: "/tags/", icon: "reco-tag" },
             {
                 text: "博文",
                 icon: "reco-up",
@@ -103,7 +45,65 @@ module.exports = {
                 icon: "reco-github",
                 link: "https://github.com/yshysh123"
             }
-        ]
+        ],
+        // 博客设置
+        blogConfig: {
+            category: {
+                location: 2, // 在导航栏菜单中所占的位置，默认2
+                text: '分类' // 默认 “分类”
+            },
+            tag: {
+                location: 3, // 在导航栏菜单中所占的位置，默认3
+                text: '标签' // 默认 “标签”
+            }
+        },
+        // 搜索设置
+        search: true,
+        searchMaxSuggestions: 10,
+        // 自动形成侧边导航
+        sidebar: 'auto',
+        // 最后更新时间
+        lastUpdated: '上次更新时间',
+        date_format: 'yyyy-MM-dd HH:mm:ss',
+        // 作者
+        author: 'yush',
+        // 备案号
+        // record: 'xxx',
+        // 项目开始时间
+        startYear: '2019',
+        /**
+         * 密钥 (if your blog is private)
+         */
+
+        // keyPage: {
+        //   keys: ['your password'],
+        //   color: '#42b983',
+        //   lineColor: '#42b983'
+        // },
+
+        /**
+         * valine 设置 (if you need valine comment )
+         */
+
+        valineConfig: {
+            appId: 'wMbg0hd0AjbWzLTsrsUS8xnC-gzGzoHsz',// your appId
+            appKey: '9thlnLH4eo1g0A44fMEgBLm5', // your appKey
+            placeholder: 'ヾﾉ≧∀≦)o来啊，我们一起嘤嘤嘤！！！'
+        }
     },
-    plugins: ["@vuepress/back-to-top", "vuepress-plugin-cat"]
-};
+    markdown: {
+        lineNumbers: true
+    },
+    plugins: [
+        ['@vuepress/pwa', {
+            popupComponent: 'MySWUpdatePopup',
+            undatePopup: {
+                message: '发现新内容可用',
+                buttonText: '刷新'
+            }
+        }],
+        '@vuepress/back-to-top',
+        '@vuepress/medium-zoom',
+        'vuepress-plugin-cat'
+    ]
+}

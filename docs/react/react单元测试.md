@@ -2,7 +2,8 @@
 title: React单元测试
 sidebar: true
 date: 2019-04-21
-categories: React 学习笔记
+categories: 
+  - React 学习笔记
 tags:
   - react
   - 单元测试

@@ -1,7 +1,10 @@
 ---
 title: React 学习笔记
 isCategories: true
-sidebar: false
+sidebar: true
+date: 2019-02-06
+tags:
+  - react
 ---
 
 # React 学习笔记

@@ -2,7 +2,8 @@
 title: nginx负载均衡
 sidebar: true
 date: 2019-03-12
-categories: Nginx 学习笔记
+categories: 
+  - Nginx 学习笔记
 tags:
   - nginx
 ---

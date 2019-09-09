@@ -1,7 +1,10 @@
 ---
 title: Nginx 学习笔记
 isCategories: true
-sidebar: false
+sidebar: true
+date: 2019-02-06
+tags:
+  - nginx
 ---
 
 # Nginx 学习笔记
