@@ -2,6 +2,8 @@
 title: 设计模式
 sidebar: true
 date: 2019-02-06
+categories:
+  - 面试题汇总
 tags:
   - algorithm
   - interview
@@ -48,7 +50,7 @@ var Single = (function() {
         instance = init();
       }
       return instance;
-    }
+    },
   };
 })();
 var obj1 = Single.getInstance();
@@ -71,7 +73,7 @@ function Animal(name, color) {
   };
 }
 // 实例一个对象
-var cat = new Animal("猫", "白色");
+var cat = new Animal('猫', '白色');
 console.log(cat.getName());
 ```
 
@@ -91,11 +93,11 @@ function Animal(opts) {
   obj.name = opts.name;
   obj.color = opts.color;
   obj.getInfo = function() {
-    return "名称：" + obj.name + "， 颜色：" + obj.color;
+    return '名称：' + obj.name + '， 颜色：' + obj.color;
   };
   return obj;
 }
-var cat = Animal({ name: "波斯猫", color: "白色" });
+var cat = Animal({ name: '波斯猫', color: '白色' });
 cat.getInfo();
 ```
 
@@ -112,13 +114,13 @@ class jQuery {
       this[i] = dom[i];
     }
     this.length = len;
-    this.selector = selector || "";
+    this.selector = selector || '';
   }
   append() {
-    console.log("append");
+    console.log('append');
   }
   addClass() {
-    console.log("addClass");
+    console.log('addClass');
   }
 }
 
@@ -126,7 +128,7 @@ window.$ = function(selector) {
   return new jQuery(selector);
 };
 
-var $p = $("p");
+var $p = $('p');
 console.log($p);
 console.log($p.addClass);
 ```
@@ -138,7 +140,7 @@ console.log($p.addClass);
  * 模块模式 = 封装大部分代码，只暴露必需接口
  */
 var Car = (function() {
-  var name = "法拉利";
+  var name = '法拉利';
   function sayName() {
     console.log(name);
   }
@@ -147,11 +149,11 @@ var Car = (function() {
   }
   return {
     name: sayName,
-    color: getColor
+    color: getColor,
   };
 })();
 Car.name();
-Car.color("红色");
+Car.color('红色');
 ```
 
 ## 适配器模式
@@ -162,7 +164,7 @@ Car.color("红色");
 ```javascript
 class Adaptee {
   specificRequest() {
-    return "德国标准插头";
+    return '德国标准插头';
   }
 }
 
@@ -194,7 +196,7 @@ console.log(res);
 ```javascript
 class Circle {
   draw() {
-    console.log("画一个圆形");
+    console.log('画一个圆形');
   }
 }
 
@@ -207,7 +209,7 @@ class Decorator {
     this.setRedBorder(circle);
   }
   setRedBorder(circle) {
-    console.log("设置红色边框");
+    console.log('设置红色边框');
   }
 }
 
@@ -235,10 +237,10 @@ class RealImg {
     this.loadFromDisk(); //初始化即从硬盘中加载，模拟
   }
   display() {
-    console.log("display..." + this.fileName);
+    console.log('display...' + this.fileName);
   }
   loadFromDisk() {
-    console.log("loading..." + this.fileName);
+    console.log('loading...' + this.fileName);
   }
 }
 
@@ -251,7 +253,7 @@ class ProxyImg {
   }
 }
 
-let proxyImg = new ProxyImg("1.png");
+let proxyImg = new ProxyImg('1.png');
 proxyImg.display();
 ```
 
@@ -274,8 +276,8 @@ function bindEvent(elem, type, selector, fn) {
 }
 
 //调用
-bindEvent(elem, "click", "#div1", fn);
-bindEvent(elem, "click", fn);
+bindEvent(elem, 'click', '#div1', fn);
+bindEvent(elem, 'click', fn);
 ```
 
 ## 观察者模式
@@ -298,7 +300,7 @@ class Subject {
     this.notifyAllObervers();
   }
   notifyAllObervers() {
-    this.observers.forEach(observer => {
+    this.observers.forEach((observer) => {
       observer.update();
     });
   }
@@ -320,9 +322,9 @@ class Observer {
 }
 
 let subject = new Subject();
-let obs1 = new Observer("o1", subject);
-let obs2 = new Observer("o2", subject);
-let obs3 = new Observer("o3", subject);
+let obs1 = new Observer('o1', subject);
+let obs2 = new Observer('o2', subject);
+let obs3 = new Observer('o3', subject);
 
 subject.setState(1);
 subject.setState(2);

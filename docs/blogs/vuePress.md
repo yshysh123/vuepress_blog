@@ -1,7 +1,6 @@
 ---
 title: 用 vuepress 搭建静态博客
-isCategories: true
-sidebar: false
+sidebar: true
 date: 2019-02-06
 tags:
   - vuepress
@@ -132,8 +131,8 @@ config.js 是 VuePress 必要的配置文件，它导出一个 javascript 对象
 
 ```javascript
 module.exports = {
-  title: "Hello VuePress",
-  description: "Just playing around"
+  title: 'Hello VuePress',
+  description: 'Just playing around',
 };
 ```
 
@@ -213,28 +212,28 @@ yarn docs:build # 或者：npm run docs:build
 
 ```javascript
 module.exports = {
-  title: "yush的博客",
-  description: "网站描述",
+  title: 'yush的博客',
+  description: '网站描述',
   // 注入到当前页面的 HTML <head> 中的标签
   head: [
-    ["link", { rel: "icon", href: "/favicon.ico" }] // 增加一个自定义的 favicon(网页标签的图标)
+    ['link', { rel: 'icon', href: '/favicon.ico' }], // 增加一个自定义的 favicon(网页标签的图标)
   ],
-  base: "/", // 这是部署到github相关的配置 下面会讲
+  base: '/', // 这是部署到github相关的配置 下面会讲
   markdown: {
-    lineNumbers: true // 代码块显示行号
+    lineNumbers: true, // 代码块显示行号
   },
   themeConfig: {
     sidebarDepth: 2, // e'b 将同时提取 markdown 中 h2 和 h3 标题，显示在侧边栏上。
-    lastUpdated: "Last Updated",
+    lastUpdated: 'Last Updated',
     serviceWorker: {
-      updatePopup: true // Boolean | Object, 默认值是 undefined.
+      updatePopup: true, // Boolean | Object, 默认值是 undefined.
       // 如果设置为 true, 默认的文本配置将是:
       // updatePopup: {
       //    message: "New content is available.",
       //    buttonText: "Refresh"
       // }
-    }
-  }
+    },
+  },
 };
 ```
 
@@ -245,28 +244,28 @@ module.exports = {
   themeConfig: {
     nav: [
       {
-        text: "博文",
+        text: '博文',
         items: [
           {
-            text: "React学习汇总",
-            link: "/react/"
+            text: 'React学习汇总',
+            link: '/react/',
           },
           {
-            text: "使用 GitHub Pages 和 VuePress 搭建网站",
-            link: "/vuepress/"
-          }
-        ]
+            text: '使用 GitHub Pages 和 VuePress 搭建网站',
+            link: '/vuepress/',
+          },
+        ],
       },
       {
-        text: "关于",
-        link: "/about/"
+        text: '关于',
+        link: '/about/',
       },
       {
-        text: "GitHub",
-        items: [{ text: "GitHub地址", link: "https://github.com/yshysh123" }]
-      }
-    ]
-  }
+        text: 'GitHub',
+        items: [{ text: 'GitHub地址', link: 'https://github.com/yshysh123' }],
+      },
+    ],
+  },
 };
 ```
 

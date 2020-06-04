@@ -2,6 +2,8 @@
 title: 比较类题目
 sidebar: true
 date: 2019-02-06
+categories:
+  - 面试题汇总
 tags:
   - algorithm
   - interview
@@ -193,8 +195,8 @@ Function.prototype.apply = function(ctx, arr) {
 
 ```javascript
 Function.prototype.bind = function(context, ...rest) {
-  if (typeof this !== "function") {
-    throw new TypeError("invalid invoked!");
+  if (typeof this !== 'function') {
+    throw new TypeError('invalid invoked!');
   }
   const self = this;
   return function F(...args) {
@@ -242,7 +244,7 @@ Function.prototype.bind = function(context, ...rest) {
 - 若此时途中尚有顶点未被访问，则从一个未被访问的顶点出发，重新进行深度优先遍历，直到所有顶点均被访问过为止
 
 ```javascript
-let deepTraversal2 = node => {
+let deepTraversal2 = (node) => {
   let nodes = [];
   if (node !== null) {
     nodes.push(node);
@@ -268,7 +270,7 @@ let deepTraversal2 = node => {
 - 若队列为空，表示图中并没有目标节点，则结束遍历
 
 ```javascript
-let widthTraversal2 = node => {
+let widthTraversal2 = (node) => {
   let nodes = [];
   let stack = [];
   if (node) {
@@ -328,8 +330,8 @@ input.addEventListener('keyup', function(e){
 ### Proxy
 
 ```javascript
-const input = document.getElementById("input");
-const p = document.getElementById("p");
+const input = document.getElementById('input');
+const p = document.getElementById('p');
 const obj = {};
 
 const newObj = new Proxy(obj, {
@@ -339,15 +341,15 @@ const newObj = new Proxy(obj, {
   },
   set: function(target, key, value, receiver) {
     console.log(target, key, value, receiver);
-    if (key === "text") {
+    if (key === 'text') {
       input.value = value;
       p.innerHTML = value;
     }
     return Reflect.set(target, key, value, receiver);
-  }
+  },
 });
 
-input.addEventListener("keyup", function(e) {
+input.addEventListener('keyup', function(e) {
   newObj.text = e.target.value;
 });
 ```

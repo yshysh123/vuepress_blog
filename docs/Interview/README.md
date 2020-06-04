@@ -1,5 +1,6 @@
 ---
 title: 常用面试题
+isCategories: true
 sidebar: true
 date: 2019-02-06
 tags:
@@ -157,21 +158,21 @@ xhr.send(null)
 ## JS 实现懒加载
 
 ```javascript
-let lazyImages = [...document.querySelectorAll(".lazy-image")];
+let lazyImages = [...document.querySelectorAll('.lazy-image')];
 let inAdvance = 300; // 自定义一个高度，当距离300px到达图片时加载
 function lazyLoad() {
-  lazyImages.forEach(image => {
+  lazyImages.forEach((image) => {
     if (image.offsetTop < window.innerHeight + window.pageYOffset + inAdvance) {
       // 距离xxpx时加载图片
       image.src = image.dataset.src;
-      image.onload = () => image.classList.add("loaded");
+      image.onload = () => image.classList.add('loaded');
     }
   });
 
   // if all loaded removeEventListener
 }
 lazyLoad();
-window.addEventListener("scroll", _.throttle(lazyLoad, 16)); // 用到了lodash的节流函数
+window.addEventListener('scroll', _.throttle(lazyLoad, 16)); // 用到了lodash的节流函数
 ```
 
 ## 从输入 url 到展示的过程

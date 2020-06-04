@@ -2,6 +2,8 @@
 title: 小技巧
 sidebar: true
 date: 2019-02-06
+categories:
+  - 面试题汇总
 tags:
   - algorithm
   - interview
