@@ -1,8 +1,8 @@
 ---
 title: React单元测试
 sidebar: true
-date: 2019-04-21
-categories: 
+date: 2020-08-03
+categories:
   - React 学习笔记
 tags:
   - react
@@ -41,8 +41,9 @@ React 单元测试分享
 
 - TDD: 测试驱动开发，英文为 Testing Driven Development，强调的是一种开发方式，以测试来驱动整个项目，即先根据接口完成测试编写，然后在完成功能是要不断通过测试，最终目的是通过所有测试
 - BDD: 行为驱动测试，英文为 Behavior Driven Development，强调的是写测试的风格，即测试要写的像自然语言，让项目的各个成员甚至产品都能看懂测试，甚至编写测试
+- DDD: Domain-drive Design,领域驱动设计。其目的是以一种领域专家、设计人员、开发人员都能理解的通用语言作为相互交流的工具，在交流的过程中发现领域概念，然后将这些概念设计成一个领域模型，再有该模型驱动软件设计和开发。
 
-TDD 和 BDD 有各自的使用场景，BDD 一般偏向于系统功能和业务逻辑的自动化测试设计；而 TDD 在快速开发并测试功能模块的过程中则更加高效，以快速完成开发为目的。
+TDD 和 BDD 有各自的使用场景，BDD 一般偏向于系统功能和业务逻辑的自动化测试设计；而 TDD 在快速开发并测试功能模块的过程中则更加高效，以快速完成开发为目的。DDD 则较为复杂
 
 ## 准备: 前端环境
 
@@ -73,7 +74,7 @@ nodejs 是一门更新很快的语言，我们常常要维护老项目，老项�
   - 互动模式选择要测试的模块
   - 优雅的测试覆盖率报告，基于 Istanbul
   - 智能并行测试(参考)
-  - 较新，社区不十分成熟
+  - 较新，社区不如 mocha 成熟
   - 全局环境，比如 describe 不需要引入直接用
   - 较多用于 React 项目(但广泛支持各种项目)
 
@@ -116,18 +117,15 @@ Enzyme
 Enzyme 是 Airbnb 开源的 React 测试工具库库，它功能过对官方的测试工具库 ReactTestUtils 的二次封装，提供了一套简洁强大的 API。
 实现了 jQuery 风格的方式进行 DOM 处理，开发体验十分友好。在开源社区有超高人气，同时也获得了 React 官方的推荐。
 
-三种渲染方法
-
-- shallow：浅渲染，是对官方的 Shallow Renderer 的封装。将组件渲染成虚拟 DOM 对象，只会渲染第一层，子组件将不会被渲染出来，使得效率非常高。不需要 DOM 环境， 并可以使用 jQuery 的方式访问组件的信息
-- render：静态渲染，它将 React 组件渲染成静态的 HTML 字符串，然后使用 Cheerio 这个库解析这段字符串，并返回一个 Cheerio 的实例对象，可以用来分析组件的 html 结构
-- mount：完全渲染，它将组件渲染加载成一个真实的 DOM 节点，用来测试 DOM API 的交互和组件的生命周期。用到了 jsdom 来模拟浏览器环境
-
 测试的渐进性：
+
+![测试金字塔](./image/testPyramid.jpg)
 
 1. 函数单元测试
 2. 组件单元测试
 3. 页面单元测试
-4. E2E 测试
+4. 快照测试
+5. E2E 测试
 
 最终为了各种场景下 React 的单元测试，集成了下面的 lib：
 
@@ -138,6 +136,14 @@ Enzyme 是 Airbnb 开源的 React 测试工具库库，它功能过对官方的�
 - babel-7-jest:Jest 对应的 babel
 - eslint-plugin-jest：jest 对应的 eslint
 - jsdom：虚拟 dom 环境
+
+## JEST 的使用
+
+三种渲染方法
+
+- shallow：浅渲染，是对官方的 Shallow Renderer 的封装。将组件渲染成虚拟 DOM 对象，只会渲染第一层，子组件将不会被渲染出来，使得效率非常高。不需要 DOM 环境， 并可以使用 jQuery 的方式访问组件的信息
+- render：静态渲染，它将 React 组件渲染成静态的 HTML 字符串，然后使用 Cheerio 这个库解析这段字符串，并返回一个 Cheerio 的实例对象，可以用来分析组件的 html 结构
+- mount：完全渲染，它将组件渲染加载成一个真实的 DOM 节点，用来测试 DOM API 的交互和组件的生命周期。用到了 jsdom 来模拟浏览器环境
 
 ## 函数式单元测试
 
@@ -173,29 +179,29 @@ Enzyme 是 Airbnb 开源的 React 测试工具库库，它功能过对官方的�
 3. 进行单元测试
 
 ```javascript
-import dateFormater from "tool/dateFormater";
-import moment from "moment";
+import dateFormater from 'tool/dateFormater';
+import moment from 'moment';
 
 const { uponDay, uponSeconds } = dateFormater;
 
-describe("测试dateFormater", () => {
-  it("测试格式化到天，无时分秒", () => {
-    expect(uponDay(moment("2018-09-20"))).toBe("2018-09-20");
+describe('测试dateFormater', () => {
+  it('测试格式化到天，无时分秒', () => {
+    expect(uponDay(moment('2018-09-20'))).toBe('2018-09-20');
   });
-  it("测试格式化到天，无时分秒，日期为字符串类型", () => {
-    expect(uponDay("2018-09-20")).toBe("2018-09-20");
+  it('测试格式化到天，无时分秒，日期为字符串类型', () => {
+    expect(uponDay('2018-09-20')).toBe('2018-09-20');
   });
-  it("测试格式化到天，带时分秒", () => {
-    expect(uponDay(moment("2018-09-20 08:08:00"))).toBe("2018-09-20");
+  it('测试格式化到天，带时分秒', () => {
+    expect(uponDay(moment('2018-09-20 08:08:00'))).toBe('2018-09-20');
   });
-  it("测试格式化到秒", () => {
-    expect(uponSeconds(moment("2018-09-26T16:45:36.000+0000"))).toBe(
-      "2018-09-27 00:45:36"
+  it('测试格式化到秒', () => {
+    expect(uponSeconds(moment('2018-09-26T16:45:36.000+0000'))).toBe(
+      '2018-09-27 00:45:36'
     );
   });
-  it("测试格式化到秒，日期为字符串类型", () => {
-    expect(uponSeconds("2018-09-26T16:45:36.000+0000")).toBe(
-      "2018-09-27 00:45:36"
+  it('测试格式化到秒，日期为字符串类型', () => {
+    expect(uponSeconds('2018-09-26T16:45:36.000+0000')).toBe(
+      '2018-09-27 00:45:36'
     );
   });
 });
@@ -232,11 +238,11 @@ React 组件分为四种：
 就拿一个简单的权限高阶组件做例子：
 
 ```javascript
-import React from "react";
-import { Provider } from "mobx-react";
-import { mount } from "enzyme";
-import Permission from "component/Permission";
-import permissionStore from "store/permission";
+import React from 'react';
+import { Provider } from 'mobx-react';
+import { mount } from 'enzyme';
+import Permission from 'component/Permission';
+import permissionStore from 'store/permission';
 
 const TestPermission = () => (
   <Provider store={{ permissionStore }}>
@@ -246,18 +252,18 @@ const TestPermission = () => (
   </Provider>
 );
 
-describe("component/Permission", () => {
-  it("测试无权限", () => {
+describe('component/Permission', () => {
+  it('测试无权限', () => {
     const app = mount(<TestPermission />);
-    expect(permissionStore.has("ok")).toBe(false);
+    expect(permissionStore.has('ok')).toBe(false);
     expect(app.text()).toBe(null);
   });
 
-  it("测试有权限", () => {
-    permissionStore.data.add("ok");
+  it('测试有权限', () => {
+    permissionStore.data.add('ok');
     const app = mount(<TestPermission />);
-    expect(permissionStore.has("ok")).toBe(true);
-    expect(app.text()).toBe("hasPermission");
+    expect(permissionStore.has('ok')).toBe(true);
+    expect(app.text()).toBe('hasPermission');
   });
 });
 ```
@@ -269,24 +275,24 @@ describe("component/Permission", () => {
 例如我们可以对一个页面的跟组件进行测试：
 
 ```javascript
-import React from "react";
-import { shallow } from "enzyme";
-import { Card } from "antd";
-import A from "page/A";
-import Operation from "page/A/Operation";
-import List from "page/A/List";
-import Search from "page/A/Search";
-import CardTitle from "component/CardTitle";
+import React from 'react';
+import { shallow } from 'enzyme';
+import { Card } from 'antd';
+import A from 'page/A';
+import Operation from 'page/A/Operation';
+import List from 'page/A/List';
+import Search from 'page/A/Search';
+import CardTitle from 'component/CardTitle';
 
-describe("page/A", () => {
-  it("测试页面可完整渲染", () => {
+describe('page/A', () => {
+  it('测试页面可完整渲染', () => {
     const app = shallow(<A />);
     expect(app.find(Card)).toHaveLength(1);
     expect(app.contains(<Operation />)).toBeTruthy();
     expect(app.contains(<List />)).toBeTruthy();
 
     // 测试可完整渲染Card title属性
-    const title = app.find(Card).prop("title");
+    const title = app.find(Card).prop('title');
     expect(title.type).toEqual(CardTitle);
     expect(title.props.children.type).toEqual(Search);
 
@@ -322,13 +328,24 @@ describe("page/A", () => {
 - TestCafe
 - Protractor
 - WebdriverIO
+- katalon
 - Cypress
 - Jest puppeteer
+
+|     名称      |         断言          | 是否跨浏览器支持 |          实现          |                      官网                      | 是否开源 |
+| :-----------: | :-------------------: | :--------------: | :--------------------: | :--------------------------------------------: | :------: |
+|  nightwatch   | assert 和 Chai Expect |        是        |        selenium        |            http://nightwatchjs.org/            |    是    |
+|    cypress    | Chai、Chai-jQuery 等  |        否        |         Chrome         |            https://www.cypress.io/             |    是    |
+|   testcafe    |     自定义的断言      |        是        | 不是基于 selenium 实现 |     https://devexpress.github.io/testcafe/     |    是    |
+|    katalon    |        TDD/BDD        |        是        |           -            |    https://www.katalon.com/katalon-studio/     |    否    |
+|  Protractor   | assert 和 Chai Expect |        是        |        selenium        |     https://github.com/angular/protractor      |    否    |
+|  WebdriverIO  | assert 和 Chai Expect |        是        |        selenium        |             https://webdriver.io/              |    否    |
+| jest-puppteer |       jest 断言       |        是        |         Chrome         | https://github.com/smooth-code/jest-puppeteer/ |    是    |
 
 ### 测试前须知
 
 1. 通常 E2E 测试是我们正常开发已经完成，最好有完整的测试环境（开发、生产）。
-2. E2E 测试需要我们队整个业务逻辑非常熟练，即多页面之间的交互甚至整个项目流程。
+2. E2E 测试需要我们对整个业务逻辑非常熟练，即多页面之间的交互甚至整个项目流程。
 
 下面介绍我主要使用的 2 种 E2E 测试工具 Nightwatch 及 Jest puppeteer
 
@@ -336,39 +353,39 @@ Nightwatch
 
 ```javascript
 module.exports = {
-  "test notFound page": browser => {
+  'test notFound page': (browser) => {
     browser
-      .url("http://localhost:8080/xxxx")
+      .url('http://localhost:8080/xxxx')
       .maximizeWindow()
       .useXpath()
-      .assert.containsText('//*[@id="app"]/div[3]/div[2]/h1', "404")
+      .assert.containsText('//*[@id="app"]/div[3]/div[2]/h1', '404')
       .assert.containsText(
         '//*[@id="app"]/div[3]/div[2]/h2',
-        "抱歉，您访问的页面不存在"
+        '抱歉，您访问的页面不存在'
       )
       .pause(1000)
-      .assert.urlContains("http://localhost:8080/xxxx")
+      .assert.urlContains('http://localhost:8080/xxxx')
       .click('//*[@id="app"]/div[3]/div[2]/div/button')
       .pause(1000)
-      .assert.urlContains("http://localhost:8080/Home")
+      .assert.urlContains('http://localhost:8080/Home')
       .end();
-  }
+  },
 };
 ```
 
 Jest puppeteer
 
 ```javascript
-describe("goto page", () => {
+describe('goto page', () => {
   beforeAll(async () => {
     // page = await browser.newPage()
     await page.setViewport({
       width: 1920,
-      height: 1080
+      height: 1080,
     });
   });
 
-  it("go to user page", async () => {
+  it('go to user page', async () => {
     await page.goto(`${pageUrl}/user`);
     await page.waitForSelector('label[for="account"]');
     await page.waitForSelector('label[for="name"]');
@@ -376,25 +393,25 @@ describe("goto page", () => {
     await page.waitForSelector('label[for="mobile"]');
   });
 
-  it("coverage", async () => {
+  it('coverage', async () => {
     await Promise.all([
       page.coverage.startJSCoverage(),
-      page.coverage.startCSSCoverage()
+      page.coverage.startCSSCoverage(),
     ]);
     await page.goto(pageUrl);
-    await page.hover(".ant-menu-root");
+    await page.hover('.ant-menu-root');
     await page.click('.ant-menu-item a[href="/user"]');
     // await jestPuppeteer.debug()
     const [jsCoverage, cssCoverage] = await Promise.all([
       page.coverage.stopJSCoverage(),
-      page.coverage.stopCSSCoverage()
+      page.coverage.stopCSSCoverage(),
     ]);
     const coverage = [...jsCoverage, ...cssCoverage];
     let totalBytes = 0;
     let usedBytes = 0;
-    coverage.forEach(entry => {
+    coverage.forEach((entry) => {
       totalBytes += entry.text.length;
-      entry.ranges.forEach(range => {
+      entry.ranges.forEach((range) => {
         usedBytes += range.end - range.start - 1;
       });
     });

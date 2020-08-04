@@ -24,6 +24,10 @@ module.exports = {
         icon: 'reco-up',
         items: [
           {
+            text: 'JS平时记录',
+            link: '/jsdoc/',
+          },
+          {
             text: 'React学习汇总',
             link: '/react/',
           },
@@ -79,6 +83,7 @@ module.exports = {
             { title: 'react16-hooks', path: '/react/react16-hooks' },
             { title: 'react单元测试', path: '/react/react单元测试' },
             { title: 'react生命周期', path: '/react/react生命周期' },
+            { title: 'pwa', path: '/react/pwa' },
           ],
         },
       ],
@@ -106,6 +111,13 @@ module.exports = {
             { title: 'DesignPatterns', path: '/Interview/DesignPatterns' },
             { title: 'tips', path: '/Interview/tips' },
           ],
+        },
+      ],
+      '/jsdoc/': [
+        {
+          title: 'JS常用技巧',
+          collapsable: false,
+          children: [{ title: 'ast介绍', path: '/jsdoc/ast' }],
         },
       ],
     },
