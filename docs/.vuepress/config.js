@@ -81,7 +81,7 @@ module.exports = {
             { title: 'propTypes', path: '/react/propTypes' },
             { title: 'react_comp', path: '/react/react_comp' },
             { title: 'react16-hooks', path: '/react/react16-hooks' },
-            { title: 'react单元测试', path: '/react/react单元测试' },
+            { title: '单元测试', path: '/react/单元测试' },
             { title: 'react生命周期', path: '/react/react生命周期' },
             { title: 'pwa', path: '/react/pwa' },
           ],
