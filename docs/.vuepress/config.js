@@ -43,6 +43,10 @@ module.exports = {
             text: '面试题汇总',
             link: '/interview/',
           },
+          {
+            text: '算法&数据结构',
+            link: '/algorithm/',
+          },
         ],
       },
       {
@@ -113,11 +117,32 @@ module.exports = {
           ],
         },
       ],
+      '/algorithm/': [
+        {
+          title: '算法&数据结构',
+          collapsable: false,
+        },
+      ],
       '/jsdoc/': [
         {
           title: 'JS常用技巧',
           collapsable: false,
           children: [{ title: 'ast介绍', path: '/jsdoc/ast' }],
+        },
+      ],
+      '/learn/': [
+        {
+          title: '每日一学',
+          collapsable: false,
+          children: [
+            { title: '2020-10-12', path: '/learn/2020-10-12' },
+            { title: '2020-10-14', path: '/learn/2020-10-14' },
+            { title: '2020-10-20', path: '/learn/2020-10-20' },
+            { title: '2020-10-23', path: '/learn/2020-10-23' },
+            { title: '2020-10-26', path: '/learn/2020-10-26' },
+            { title: '2020-11-03', path: '/learn/2020-11-03' },
+            { title: '2020-11-09', path: '/learn/2020-11-09' },
+          ],
         },
       ],
     },
