@@ -32,6 +32,10 @@ module.exports = {
             link: '/react/',
           },
           {
+            text: 'Vue学习汇总',
+            link: '/vue/',
+          },
+          {
             text: 'Nginx学习汇总',
             link: '/nginx/',
           },
@@ -88,6 +92,20 @@ module.exports = {
             { title: '单元测试', path: '/react/单元测试' },
             { title: 'react生命周期', path: '/react/react生命周期' },
             { title: 'pwa', path: '/react/pwa' },
+            { title: 'fiber', path: '/react/fiber' },
+          ],
+        },
+      ],
+      '/vue/': [
+        {
+          title: 'vue学习汇总',
+          collapsable: false,
+          children: [
+            { title: 'vue初始化', path: '/vue/vue初始化' },
+            { title: 'vue全局api', path: '/vue/vue全局api' },
+            { title: 'vue响应式原理', path: '/vue/vue响应式原理' },
+            { title: 'vue异步更新机制', path: '/vue/vue异步更新机制' },
+            { title: 'vue实例方法', path: '/vue/vue实例方法' },
           ],
         },
       ],
@@ -119,8 +137,23 @@ module.exports = {
       ],
       '/algorithm/': [
         {
-          title: '算法&数据结构',
+          title: '算法',
           collapsable: false,
+          children: [
+            { title: '动态规划', path: '/algorithm/动态规划' },
+            { title: '链表', path: '/algorithm/链表' },
+            { title: '树', path: '/algorithm/树' },
+            { title: '数组', path: '/algorithm/数组' },
+            { title: '贪心', path: '/algorithm/贪心' },
+            { title: '字符串', path: '/algorithm/字符串' },
+          ],
+        },
+      ],
+      '/dataStructure/': [
+        {
+          title: '数据结构',
+          collapsable: false,
+          children: [{ title: '栈', path: '/dataStructure/栈' }],
         },
       ],
       '/jsdoc/': [
